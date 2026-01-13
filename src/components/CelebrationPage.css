@@ -576,21 +576,21 @@
 }
 
 .layer-1 {
-  width: 120px;
+  width: 180px;
   height: 40px;
   background: linear-gradient(135deg, #d4a574, #c49563);
   z-index: 3;
 }
 
 .layer-2 {
-  width: 140px;
+  width: 150px;
   height: 40px;
   background: linear-gradient(135deg, #f5deb3, #e5cfa3);
   z-index: 2;
 }
 
 .layer-3 {
-  width: 160px;
+  width: 120px;
   height: 40px;
   background: linear-gradient(135deg, #faebd7, #f0e1c7);
   z-index: 1;

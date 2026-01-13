@@ -14,17 +14,12 @@ function MessageCard({ isActive }) {
   const messageContentRef = useRef(null);
 
  const message = `Dear Nasya 🤍,
-
-Happy Birthday to my favorite Rasmalai 🎂✨  
-You have the sweetest way of making everything feel lighter and happier just by being you.
-
-I hope today brings you lots of smiles, warm moments, and all the happiness you deserve.  
-Stay the same kind, beautiful soul that makes days brighter without even trying.
-
-Once again, happy birthday Rasmalai 💖  
-Enjoy your special day!
-
-— From someone who truly cares 🌸`;
+ 
+Happy Birthday to my favorite Rasmalai 🎂✨
+You genuinely have this calm, comforting vibe that makes everything feel lighter without you even trying. Being around your words or your presence just feels easy, and that’s something rare.
+I hope today gives you lots of smiles, peaceful moments, and the kind of happiness that stays even after the day ends. You truly deserve warmth, care, and good things coming your way. Stay the same kind, thoughtful, and beautiful soul you are someone who makes days brighter in the simplest way.
+Once again, happy birthday. I hope this year treats you gently and gives you many reasons to smile. 🌸
+— From someone who truly cares`;
 
 
   // Handle page transitions
