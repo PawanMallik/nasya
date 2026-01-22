@@ -13,9 +13,9 @@ function MessageCard({ isActive }) {
   const curtainHintRef = useRef(null);
   const messageContentRef = useRef(null);
 
- const message = `Dear Nora 🤍,
+ const message = `Dear Nasya 🤍,
  
-Happy Birthday to my favorite CutiePie 🎂✨
+Happy Birthday to my favorite Rasmalai 🎂✨
 You genuinely have this calm, comforting vibe that makes everything feel lighter without you even trying. Being around your words or your presence just feels easy, and that’s something rare.
 I hope today gives you lots of smiles, peaceful moments, and the kind of happiness that stays even after the day ends. You truly deserve warmth, care, and good things coming your way. Stay the same kind, thoughtful, and beautiful soul you are someone who makes days brighter in the simplest way.
 Once again, happy birthday. I hope this year treats you gently and gives you many reasons to smile. 🌸
