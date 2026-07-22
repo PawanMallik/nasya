@@ -8,15 +8,21 @@ function Gallery({ isActive }) {
   const [photosRevealed, setPhotosRevealed] = useState(false);
 
   const photosRef = useRef([]);
+  const trackRef = useRef(null);
   const lightboxImgRef = useRef(null);
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  const base = import.meta.env.BASE_URL || "/";
 
   const photos = [
-    { src: "/images/pic4.jpeg", alt: "Memory 4" }
-    { src: "/images/pic1.jpeg", alt: "Memory 1" },
-    { src: "/images/pic2.jpeg", alt: "Memory 2" },
-    { src: "/images/pic3.jpeg", alt: "Memory 3" },
-    // { src: "/images/pic5.jpeg", alt: "Memory 5" },
-    // { src: "/images/pic6.jpeg", alt: "Memory 6" },
+    { src: `${base}images/pic4.jpeg`, alt: "Memory 4" },
+    { src: `${base}images/pic1.jpeg`, alt: "Memory 1" },
+    { src: `${base}images/pic2.jpeg`, alt: "Memory 2" },
+    { src: `${base}images/pic3.jpeg`, alt: "Memory 3" },
+    { src: `${base}images/pic2.jpeg`, alt: "Memory 2" },
+    { src: `${base}images/pic3.jpeg`, alt: "Memory 3" }
+    // { src: `${base}images/pic5.jpeg`, alt: "Memory 5" },
+    // { src: `${base}images/pic6.jpeg`, alt: "Memory 6" },
   ];
 
   // Reveal photos with GSAP when page becomes active
@@ -58,6 +64,29 @@ function Gallery({ isActive }) {
       );
     }
   };
+
+  const slideTo = useCallback(
+    (index) => {
+      const newIndex = (index + photos.length) % photos.length;
+      setCurrentSlide(newIndex);
+      if (trackRef.current) {
+        gsap.to(trackRef.current, {
+          x: `-${newIndex * 100}%`,
+          duration: 0.45,
+          ease: "power2.out",
+        });
+      }
+    },
+    [photos.length]
+  );
+
+  const slideNext = useCallback(() => {
+    slideTo(currentSlide + 1);
+  }, [currentSlide, slideTo]);
+
+  const slidePrev = useCallback(() => {
+    slideTo(currentSlide - 1);
+  }, [currentSlide, slideTo]);
 
   const closeLightbox = useCallback(() => {
     setLightboxOpen(false);
@@ -140,17 +169,29 @@ function Gallery({ isActive }) {
   return (
     <section className="gallery">
       <h2>📸 Our Beautiful Memories</h2>
-      <div className="photos">
-        {photos.map((photo, index) => (
-          <img
-            key={index}
-            ref={(el) => (photosRef.current[index] = el)}
-            src={photo.src}
-            alt={photo.alt}
-            onClick={() => openLightbox(index)}
-            loading="lazy"
-          />
-        ))}
+      <div className="slider-wrap">
+        <button className="slider-nav slider-prev" onClick={slidePrev} aria-label="Previous">
+          ‹
+        </button>
+
+        <div className="slider">
+          <div className="track" ref={trackRef}>
+            {photos.map((photo, index) => (
+              <img
+                key={index}
+                ref={(el) => (photosRef.current[index] = el)}
+                src={photo.src}
+                alt={photo.alt}
+                onClick={() => openLightbox(index)}
+                loading="lazy"
+              />
+            ))}
+          </div>
+        </div>
+
+        <button className="slider-nav slider-next" onClick={slideNext} aria-label="Next">
+          ›
+        </button>
       </div>
 
       {lightboxOpen && (
